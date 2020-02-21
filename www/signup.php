@@ -14,7 +14,7 @@ require "header.php";
         } else if ($_GET['error'] == 'invalidmailuid') {
           echo '<p>Email e Username inválidos!!</p>';
         } else if ($_GET['error'] == "invaliduid") {
-          echo '<p>Username inválido!!</p>';
+          echo '<p>Nome inválido!!</p>';
         } else if ($_GET['error'] == "passwordcheckuid") {
           echo '<p>Password não são iguais.</p>';
         } else if ($_GET['error'] == "usertake") {
@@ -34,8 +34,8 @@ require "header.php";
       <form action="includes/signup.inc.php" method="post">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="user_cadastro">Username</label>
-            <input type="text" class="form-control" id="user_cadastro" name="user_cadastro" placeholder="Usuário">
+            <label for="user_cadastro">Nome</label>
+            <input type="text" class="form-control" id="user_cadastro" name="user_cadastro" placeholder="Nome">
           </div>
           <div class="form-group col-md-6">
             <label for="email_cadastro">Email</label>

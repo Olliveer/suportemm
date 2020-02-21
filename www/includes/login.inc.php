@@ -22,7 +22,7 @@ if (isset($_POST['login-submit'])) {
 
             if ($row = mysqli_fetch_assoc($result)) {
                 $pwdCheck = password_verify($password, $row['pwdUsers']);
-                $tipo_usuario = $row['tipoUser'];
+                $tipo_usuario = $row['tipoUsuario'];
               //  $verifyCheck = $row['verified']; --> Verifica se o email foi verificado na hora do cadastro.
 
 
@@ -37,17 +37,21 @@ if (isset($_POST['login-submit'])) {
                 //   //&& $verifyCheck == 1
                 //}
                 else if ($pwdCheck == true) {
-                  if ($tipo_usuario == sup) {
+                  if ($tipo_usuario == "suporte") {
                     session_start();
+                    $_SESSION['email'] = $row['emailUsers'];
                     $_SESSION['userId'] = $row['idUsers'];
-                    $_SESSION['userUid'] = $row['uidUsers'];
+                    $_SESSION['nome'] = $row['nome'];
+                    $_SESSION['tipo'] = $row['tipoUsuario'];
                     header("Location: ../index.php?login=success");
                     exit();
-                  }elseif($tipo_usuario == user){
+                  }elseif($tipo_usuario == "user"){
                     session_start();
+                    $_SESSION['email'] = $row['emailUsers'];
                     $_SESSION['userId'] = $row['idUsers'];
-                    $_SESSION['userUid'] = $row['uidUsers'];
-                    header("Location: ../home.php?login=success");
+                    $_SESSION['nome'] = $row['nome'];
+                    $_SESSION['tipo'] = $row['tipoUsuario'];
+                    header("Location: ../index.php?login=success");
                     exit();
 
                   }

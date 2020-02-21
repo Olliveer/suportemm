@@ -33,16 +33,33 @@ session_start();
 
 			<div class="container-fluid">
 
-			    <div class="navbar-header">
+
+
+
+
+
+			   <div class="navbar-header">
 			      <a class="navbar-brand" href="index.php">Madeira Madeira</a>
 			    </div>
 
 
 			    <div class="collapse navbar-collapse">
 			      <ul class="nav navbar-nav">
-			        <li><a href="signup.php">Cadastrar</a></li>
-							<li><a href="reset-password.php">Esqueçeu a senha?</a></li>
 
+							<?php
+									if ($_SESSION['tipo']=='suporte') {
+										echo '<li><a href="signup.php">Cadastrar Suporte</a></li>
+													<li><a href="index.php">Tickets</a></li>
+													<li><a href="suporte.php">Tickets Resolvidos</a></li>';     // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
+									}elseif ($_SESSION['tipo'] == 'user') {
+										echo '<li><a href="index.php">Abrir Ticket</a></li>
+													<li><a href="suporte.php" action="includes/get-tickets.php">Tickets</a></li>';
+									}else {
+										echo '<li><a href="signup.php">Cadastrar</a></li>
+													<li><a href="reset-password.php">Esqueçeu a senha?</a></li>';
+									}
+
+							?>
 			      </ul>
 
 
@@ -65,7 +82,7 @@ session_start();
 				</div>
 
 				<button class="btn btn-primary" type="submit" name="login-submit">Login</button>
-			</form>';
+				</form>';
 				}
 
 
