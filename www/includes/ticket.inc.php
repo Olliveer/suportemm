@@ -14,7 +14,7 @@ if (isset($_POST['new-tickt-submit'])) {
         header("Location: ../index.php?error=Camposvazios");
         exit();
     } else {
-        $sql = "SELECT assunto FROM tickets WHERE assunto=? ";
+        $sql = "SELECT t.idUsuario,u.idUsers, u.nome,t.assunto from tickets as t inner join users as u on(t.idUsuario=u.idUsers) where t.assunto=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../index.php?error=sqlerror");

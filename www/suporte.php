@@ -8,6 +8,7 @@ session_start();
 $nome = $_SESSION['nome'];
 $id_ticket = $_GET['id'];
 
+
 if ($_SESSION['tipo']=='suporte') {
   $sql = "SELECT * FROM tickets where idTicket =?";
   $stmt = mysqli_stmt_init($conn);

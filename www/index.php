@@ -17,7 +17,7 @@ $id_usuario = $_SESSION['userId'];
 <?php
   if ($_SESSION['tipo']=='suporte') {
     session_start();
-    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets INNER JOIN users where  users.idUsers =tickets.idUsuario";
+    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets INNER JOIN users ON(users.idUsers =tickets.idUsuario) where estadoTicket=1";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../index.php?error=sqlerror");
@@ -56,6 +56,7 @@ $id_usuario = $_SESSION['userId'];
         $assunto = $dados['assunto'];
         $id = $dados['idTicket'];
 
+
       echo '<tr>
       <a><td>'.$nome.'</td></a>
       <td>'.$email.'</td>
@@ -63,7 +64,7 @@ $id_usuario = $_SESSION['userId'];
       <td>'.$assunto.'</td>
       <td>'.$id.'</td>
       <td><a href="suporte.php?id='.$id.'>" method="post" data-placement="top" data-toggle="tooltip" title="Responder"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>
-      <td><a action="" method="post" data-placement="top" data-toggle="tooltip" title="Finalizar"><button class="btn btn-primary" data-title="Finalizar"><span class="glyphicon glyphicon-ok"></span></button></p></td>
+      <td><a action="includes/desativa.inc.php" method="post" data-placement="top" data-toggle="tooltip" title="Finalizar"><button name="desativa-submit" class="btn btn-primary" data-title="Finalizar"><span class="glyphicon glyphicon-ok"></span></button></p></td>
 
       </tr>';
     }
@@ -84,7 +85,7 @@ $id_usuario = $_SESSION['userId'];
    // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
 }elseif ($_SESSION['tipo'] == 'user'){
   session_start();
-  $sql = "SELECT u.nome, u.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE t.idUsuario =?";
+  $sql = "SELECT u.nome, u.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE t.idUsuario =?";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
       header("Location: ../index.php?error=sqlerror");
@@ -110,8 +111,8 @@ $id_usuario = $_SESSION['userId'];
                     <th>Telefone</th>
                     <th>Assunto</th>
                     <th>ID Ticket</th>
-                     <th>Visualizar</th>
                     <th>Finalizar</th>
+                    <th>Visualizar</th>
                    </thead>
     <tbody>';
     while ($dados = mysqli_fetch_array($result)){
@@ -120,17 +121,51 @@ $id_usuario = $_SESSION['userId'];
       $telefone = $dados['numeroContato'];
       $assunto = $dados['assunto'];
       $id = $dados['idTicket'];
+      $estadoTicket = $dados['estadoTicket'];
+
 
     echo '<tr>
     <a><td>'.$nome.'</td></a>
     <td>'.$email.'</td>
     <td><a>'.$telefone.'</a></td>
     <td>'.$assunto.'</td>
-    <td>'.$id.'</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary" data-title="Finalizar"><span class="glyphicon glyphicon-ok"></span></button></p></td>
+    <td>'.$id.'</td>';
+    if ($estadoTicket == 2) {
+      echo '<td><p data-placement="top" data-toggle="tooltip" title="finalizado">FINALIZADO</p></td>';
+    }else if($estadoTicket == 1) {
+      echo ' <td><form action="includes/desativa.inc.php" method="post">
+                    <a title="Finalizar">
+                      <input type="hidden" name="id_ticket" value="'.$id.'>" />
+                    </a>
+                    <button class="btn btn-primary" type="submit" name="desativa-submit" data-title="Finalizar">
+                          <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                  </form>
 
-    </tr>';
+            </td>';
+
+    }else if ($estadoTicket == 0) {
+        echo '<td><p data-placement="top" data-toggle="tooltip" title="finalizado">FINALIZADO PELO USUARIO</p></td>';
+    }
+    if ($estadoTicket == 2) {
+      echo '<td> <a href="resposta.php?id='. $id .'>"title="Visualizar"><button class="btn btn-success" data-title="Visualizar"><span class="glyphicon glyphicon-search"></span></button></a></td>
+
+      </tr>';
+    }else if ($estadoTicket == 0) {
+      echo ' <td><form action="includes/reativa.inc.php" method="post">
+                    <a title="Finalizar">
+                      <input type="hidden" name="id_ticket" value="'.$id.'>" />
+                    </a>
+                    <button class="btn btn-info" type="submit" name="reativa-submit" data-title="Finalizar">
+                          <span class="glyphicon glyphicon-refresh"></span>
+                    </button>
+                  </form>
+
+            </td>';
+    }else {
+      echo '<td><p data-placement="top" data-toggle="tooltip" title="finalizado">EM ESPERA</p></td>';
+    }
+
   }
 
 echo '</tbody>

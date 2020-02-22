@@ -9,8 +9,8 @@ session_start();
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <head>
@@ -29,8 +29,7 @@ session_start();
         <![endif]-->
 
 	<header>
-		<nav class="navbar navbar-default">
-
+		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 			   <div class="navbar-header">
 			      <a class="navbar-brand" href="index.php">Madeira Madeira</a>
@@ -44,7 +43,7 @@ session_start();
 									if ($_SESSION['tipo']=='suporte') {
 										echo '<li><a href="signup.php">Cadastrar Suporte</a></li>
 													<li><a href="index.php">Tickets</a></li>
-													<li><a href="#">Tickets Resolvidos</a></li>';     // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
+													<li><a href="lista.php">Tickets Finalizado</a></li>';     // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
 									}elseif ($_SESSION['tipo'] == 'user') {
 										echo '<li><a href="newticket.php">Abrir Ticket</a></li>
 													<li><a href="index.php">Tickets</a></li>';
