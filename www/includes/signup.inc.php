@@ -59,7 +59,7 @@ if (isset($_POST['signup-submit'])) {
                       //
                       // mail($to, $subject, $message, $headers);
 
-                      header("Location: ../signup.php?signup=success");
+                      header("Location: ../index.php?signup=success");
                       exit();
 
                 }

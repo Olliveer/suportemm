@@ -17,7 +17,7 @@ $id_usuario = $_SESSION['userId'];
 <?php
   if ($_SESSION['tipo']=='suporte') {
     session_start();
-    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets INNER JOIN users where  users.idUsers =tickets.idUsuario";
+    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets INNER JOIN users where tickets.idUsuario=2";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../index.php?error=sqlerror");
