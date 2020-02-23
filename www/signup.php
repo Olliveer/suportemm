@@ -15,7 +15,7 @@ require "header.php";
           echo '<p>Email e Username inválidos!!</p>';
         } else if ($_GET['error'] == "invaliduid") {
           echo '<p>Nome inválido!!</p>';
-        } else if ($_GET['error'] == "passwordcheckuid") {
+        } else if ($_GET['error'] == "passwordcheck") {
           echo '<p>Password não são iguais.</p>';
         } else if ($_GET['error'] == "usertake") {
           echo '<p>Usuario já existe!!</p>';
@@ -30,51 +30,78 @@ require "header.php";
       }
 
       ?>
-
-      <form action="includes/signup.inc.php" method="post">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="user_cadastro">Nome</label>
-            <input type="text" class="form-control" id="user_cadastro" name="user_cadastro" placeholder="Nome">
+      <form class="form-horizontal" action="includes/signup.inc.php" method="post">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="user_cadastro">Nome:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="user_cadastro" id="user_cadastro" placeholder="Nome">
           </div>
-          <div class="form-group col-md-6">
-            <label for="email_cadastro">Email</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="email_cadastro">Email:</label>
+          <div class="col-sm-6">
             <input type="email" class="form-control" id="email_cadastro" name="email_cadastro" placeholder="Email">
           </div>
-          <div class="form-group col-md-6">
-            <label for="pwd_cadastro">Password</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Password:</label>
+          <div class="col-sm-6">
             <input type="password" class="form-control" id="pwd_cadastro" name="pwd_cadastro" placeholder="Password">
           </div>
-          <div class="form-group col-md-6">
-            <label for="pwd_cadastro_repeat">Password confirma</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Password Confirma:</label>
+          <div class="col-sm-6">
             <input type="password" class="form-control" id="pwd_cadastro_repeat" name="pwd_cadastro_repeat" placeholder="Repita seu password">
           </div>
         </div>
-        <button type="submit" name="signup-submit" class="btn btn-primary">Cadastrar</button>
-      </form>
 
-
-
-
-
-      <?php
-      if (isset($_GET["newpwd"])) {
-        if ($_GET["newpwd"] == "passwordupdated") {
-          echo '<p>Sua senha foi redefinida!!</p>';
-        } else if ($_GET["emailok"] == "success") {
-          echo '<p>E-mail verificado!!</p>';
-        }
-      }
-
-
-
-      ?>
-
-
-
-
-    </section>
+<?php
+if (isset($_GET["admin"])) {
+  if ($_GET["admin"] == "true") {?>
+    <div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <div class="checkbox">
+    <label><input type="checkbox" name="check_suporte" value="suporte">Suporte?</label>
   </div>
+</div>
+</div>
+<?php }} ?>
+
+
+
+
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" name="signup-submit" class="btn btn-primary">Cadastrar</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+<?php
+if (isset($_GET["newpwd"])) {
+  if ($_GET["newpwd"] == "passwordupdated") {
+    echo '<p>Sua senha foi redefinida!!</p>';
+  } else if ($_GET["emailok"] == "success") {
+    echo '<p>E-mail verificado!!</p>';
+  }
+}
+
+
+
+?>
+
+
+
+
+</section>
+</div>
 </main>
 
 <?php

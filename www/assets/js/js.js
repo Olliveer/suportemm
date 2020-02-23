@@ -15,4 +15,7 @@ $("#mytable #checkall").click(function () {
     $("[data-toggle=tooltip]").tooltip();
 });
 
-$('.dropdown-toggle').dropdown();
+
+  $(function () {
+    $('.dropdown-toggle').dropdown();
+  });
