@@ -9,7 +9,7 @@ $nome = $_SESSION['nome'];
 $id_ticket = $_GET['id'];
 
 if ($_SESSION['tipo']=='user') {
-  $sql = "SELECT t.idTicket, t.assunto, t.dataCriacao, t.numeroContato, t.reposta, t.idSuporte, u.nome, u.idUsers FROM users AS u INNER JOIN tickets AS t ON(u.idUsers=t.idSuporte) WHERE idTicket=?";
+  $sql = "SELECT t.idTicket, t.assunto, t.idChamado, t.emailUsuario, t.dataCriacao, t.numeroContato, t.resposta, t.idSuporte, u.nome, u.idUsers FROM users AS u INNER JOIN tickets AS t ON(u.idUsers=t.idSuporte) WHERE idTicket=?";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
       header("Location: ../index.php?error=sqlerror");
@@ -26,11 +26,13 @@ if ($_SESSION['tipo']=='user') {
       $id = $row['idTicket'];
       $id_suporte = $row['idSuporte'];
       $nome_suporte = $row['nome'];
-      $respostaSuporte = $row['reposta'];
+      $respostaSuporte = $row['resposta'];
+      $id_chamado = $row['idChamado'];
+      $email = $row['emailUsuario'];
     }
   }
 
-
+// <input type="hidden" name="id_resposta_suporte" value="'.$respostaSuporte.'" />
 echo '<div class="container">
 <div class="row">
 <div class="col-sm-12 col-md-12">
@@ -46,8 +48,11 @@ echo '<div class="container">
   <form action="includes/reabre-ticket.inc.php" method="post">
             <input type="hidden" name="id_usuario" value="'.$id_usuario.'" />
             <input type="hidden" name="id_ticket" value="'.$id.'" />
-            <input type="hidden" name="id_resposta_suporte" value="'.$respostaSuporte.'" />
             <input type="hidden" name="id_suporte" value="'.$id_suporte.'" />
+            <input type="hidden" name="id_chamado" value="'.$id_chamado.'" />
+            <input type="hidden" name="email_usuario" value="'.$email.'" />
+            <input type="hidden" name="assunto" value="'.$assunto.'" />
+            <input type="hidden" name="contato" value="'.$contato.'" />
 
       <!-- Menssagem -->
           <textarea class="form-control" id="msg_reabertura_ticket" name="msg_reabertura_ticket" placeholder="Digite sua menssagem aqui..." rows="10"></textarea><br><p>

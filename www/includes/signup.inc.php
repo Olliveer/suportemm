@@ -2,8 +2,6 @@
 
 if (isset($_POST['signup-submit'])) {
     require 'dbh.inc.php';
-
-
     $nome = $_POST['user_cadastro'];
     $email = $_POST['email_cadastro'];
     $password = $_POST['pwd_cadastro'];

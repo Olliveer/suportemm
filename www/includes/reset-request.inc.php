@@ -6,7 +6,7 @@ if (isset($_POST["reset-request-submit"])) {
   $token = random_bytes(32);
 
 
-  $url = "https://testereset.000webhostapp.com/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+  $url = "LINK DO SITE/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
 
 
   $expires = date("U") + 1800;

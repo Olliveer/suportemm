@@ -47,7 +47,7 @@ require "header.php";
           </div>
           <div class="form-group col-md-6">
             <label for="pwd_cadastro_repeat">Password confirma</label>
-            <input type="password" class="form-control" id="pwd_cadastro_repeat" name="pwd_cadastro_repeat" placeholder="Repida seu password">
+            <input type="password" class="form-control" id="pwd_cadastro_repeat" name="pwd_cadastro_repeat" placeholder="Repita seu password">
           </div>
         </div>
         <button type="submit" name="signup-submit" class="btn btn-primary">Cadastrar</button>

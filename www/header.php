@@ -42,11 +42,11 @@ session_start();
 							<?php
 									if ($_SESSION['tipo']=='suporte') {
 										echo '<li><a href="signup.php">Cadastrar Suporte</a></li>
-													<li><a href="index.php">Tickets</a></li>
+													<li><a href="home.php">Tickets</a></li>
 													<li><a href="lista.php">Tickets Finalizado</a></li>';     // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
 									}elseif ($_SESSION['tipo'] == 'user') {
 										echo '<li><a href="newticket.php">Abrir Ticket</a></li>
-													<li><a href="index.php">Tickets</a></li>';
+													<li><a href="home.php">Tickets</a></li>';
 									}else {
 										echo '<li><a href="signup.php">Cadastrar</a></li>
 													<li><a href="reset-password.php">Esqueçeu a senha?</a></li>';

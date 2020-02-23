@@ -23,7 +23,8 @@ if ($_SESSION['tipo']=='suporte') {
       $assunto = $row['assunto'];
       $contato = $row['numeroContato'];
       $data = $row['dataCriacao'];
-      $_SESSION['id'] = $row['idTicket'];
+      $texto_usuario = $row['textoTicket'];
+      $id = $row['idTicket'];
     }
   }
 
@@ -38,7 +39,7 @@ echo '<div class="container">
 
               <!-- ID Ticket -->
               <div class="form-group">
-                <label class="col-md-3 control-label" type="hidden" name="id_form_ticket" for="id_form_ticket">'.$id.'</label>
+                <input type="hidden" name="id_ticket" value="'.$id.'"/>
 
               </div>
 
@@ -69,9 +70,17 @@ echo '<div class="container">
 
           <!-- Data -->
           <div class="form-group">
-            <label class="col-md-3 control-label" for="telefone_form_ticket">Data</label>
+            <label class="col-md-3 control-label" for="data_form_ticket">Data</label>
             <div class="col-md-9">
               <h4>'.$data.'</h4>
+            </div>
+          </div>
+
+          <!-- Texto -->
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="text_form_ticket">Menssagem Usuario</label>
+            <div class="col-md-9">
+              <h4>'.$texto_usuario.'</h4>
             </div>
           </div>
 

@@ -17,7 +17,7 @@ $id_usuario = $_SESSION['userId'];
 <?php
   if ($_SESSION['tipo']=='suporte') {
     session_start();
-    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets INNER JOIN users ON (users.idUsers =tickets.idUsuario ) where estadoTicket = 2 ";
+    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, estadoTicket, assunto, textoTicket, idTicket, idSuporte FROM tickets INNER JOIN users ON (users.idUsers =tickets.idUsuario ) where estadoTicket = 3 ";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../index.php?error=sqlerror");
@@ -55,17 +55,24 @@ $id_usuario = $_SESSION['userId'];
         $telefone = $dados['numeroContato'];
         $assunto = $dados['assunto'];
         $id = $dados['idTicket'];
+        $estadoTicket = $dados['estadoTicket'];
+        $id_suporte = $dados['idSuporte'];
 
       echo '<tr>
       <a><td>'.$nome.'</td></a>
       <td>'.$email.'</td>
       <td><a>'.$telefone.'</a></td>
       <td>'.$assunto.'</td>
-      <td>'.$id.'</td>
-      <td><a href="suporte.php?id='.$id.'" method="post" data-placement="top" data-toggle="tooltip" title="Responder"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>
-      <td><a action="" method="post" data-placement="top" data-toggle="tooltip" title="Finalizar"><button class="btn btn-primary" data-title="Finalizar"><span class="glyphicon glyphicon-ok"></span></button></p></td>
+      <td>'.$id.'</td>';
+      if ($estadoTicket == 3) {
+        echo '<td><a href="suporte.php?id='.$id.'>" method="post" data-placement="top" data-toggle="tooltip" title="Responder"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>';
+      }
+      if ($estadoTicket == 3) {
+        echo '<td><p>FINALIZADO</p></td>
 
-      </tr>';
+        </tr>';
+      }
+
     }
 
 
