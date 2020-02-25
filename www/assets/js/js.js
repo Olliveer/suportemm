@@ -19,3 +19,17 @@ $("#mytable #checkall").click(function () {
   $(function () {
     $('.dropdown-toggle').dropdown();
   });
+
+
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#table_admin tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });

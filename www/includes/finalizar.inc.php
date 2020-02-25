@@ -35,7 +35,7 @@ if (isset($_POST['reposta-ticket-submit'])) {
 
             }
         }
-}
+      }
 } else if (isset($_POST['reabre-chamado-submit'])) {
     require 'dbh.inc.php';
   session_start();

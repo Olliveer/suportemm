@@ -56,55 +56,55 @@ require "header.php";
           </div>
         </div>
 
-<?php
-if (isset($_GET["admin"])) {
-  if ($_GET["admin"] == "true") {?>
-    <div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <div class="checkbox">
-    <label><input type="checkbox" name="check_suporte" value="suporte">Suporte?</label>
-  </div>
-</div>
-</div>
-<?php }} ?>
+        <?php
+        if (isset($_GET["admin"])) {
+          if ($_GET["admin"] == "true") {?>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label><input type="checkbox" name="check_suporte" value="suporte">Suporte?</label>
+                </div>
+              </div>
+            </div>
+          <?php }} ?>
 
 
 
 
 
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" name="signup-submit" class="btn btn-primary">Cadastrar</button>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" name="signup-submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </div>
+        </form>
+
+
+
+
+
+        <?php
+        if (isset($_GET["newpwd"])) {
+          if ($_GET["newpwd"] == "passwordupdated") {
+            echo '<p>Sua senha foi redefinida!!</p>';
+          } else if ($_GET["emailok"] == "success") {
+            echo '<p>E-mail verificado!!</p>';
+          }
+        }
+
+
+        
+        ?>
+
+
+
+
+      </section>
     </div>
-  </div>
-</form>
+  </main>
 
+  <?php
+  require "footer.php";
 
-
-
-
-<?php
-if (isset($_GET["newpwd"])) {
-  if ($_GET["newpwd"] == "passwordupdated") {
-    echo '<p>Sua senha foi redefinida!!</p>';
-  } else if ($_GET["emailok"] == "success") {
-    echo '<p>E-mail verificado!!</p>';
-  }
-}
-
-
-
-?>
-
-
-
-
-</section>
-</div>
-</main>
-
-<?php
-require "footer.php";
-
-?>
+  ?>

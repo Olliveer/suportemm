@@ -17,7 +17,7 @@ $id_usuario = $_SESSION['userId'];
 <?php
   if ($_SESSION['tipo']=='suporte') {
     session_start();
-    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, estadoTicket, assunto, textoTicket, idTicket, idSuporte FROM tickets INNER JOIN users ON (users.idUsers =tickets.idUsuario ) where estadoTicket = 3 ";
+    $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, idChamado, estadoTicket, assunto, textoTicket, idTicket, idSuporte FROM tickets INNER JOIN users ON (users.idUsers =tickets.idUsuario ) where estadoTicket = 3 ";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../index.php?error=sqlerror");
@@ -29,11 +29,13 @@ $id_usuario = $_SESSION['userId'];
 
       }
     echo '<div class="container">
+
   	<div class="row">
 
 
           <div class="col-md-12">
           <h4>Lista de Tickets</h4>
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
           <div class="table-responsive">
 
 
@@ -48,7 +50,7 @@ $id_usuario = $_SESSION['userId'];
                        <th>Visualizar</th>
                       <th>Finalizar</th>
                      </thead>
-      <tbody>';
+      <tbody id="table_admin">';
       while ($dados = mysqli_fetch_array($result)){
         $nome = $dados['nome'];
         $email = $dados['emailUsuario'];
@@ -57,15 +59,16 @@ $id_usuario = $_SESSION['userId'];
         $id = $dados['idTicket'];
         $estadoTicket = $dados['estadoTicket'];
         $id_suporte = $dados['idSuporte'];
+        $id_chamado = $dados['idChamado'];
 
       echo '<tr>
       <a><td>'.$nome.'</td></a>
       <td>'.$email.'</td>
-      <td><a>'.$telefone.'</a></td>
+      <td>'.$telefone.'</td>
       <td>'.$assunto.'</td>
       <td>'.$id.'</td>';
       if ($estadoTicket == 3) {
-        echo '<td><a href="suporte.php?id='.$id.'>" method="post" data-placement="top" data-toggle="tooltip" title="Responder"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>';
+        echo '<td><a href="historico.php?id='.$id_chamado.'>" data-placement="left" data-toggle="tooltip" title="Visualizar"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>';
       }
       if ($estadoTicket == 3) {
         echo '<td><p>FINALIZADO</p></td>
@@ -88,7 +91,7 @@ $id_usuario = $_SESSION['userId'];
           </div>
   	</div>
   </div>';
-   // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
+
 }else {
   echo "NINGUÉM LOGADO AQUI";
 }

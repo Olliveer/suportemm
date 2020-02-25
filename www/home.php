@@ -62,14 +62,14 @@ $id_usuario = $_SESSION['userId'];
       echo '<tr>
       <a><td>'.$nome.'</td></a>
       <td>'.$email.'</td>
-      <td><a>'.$telefone.'</a></td>
+      <td>'.$telefone.'</td>
       <td>'.$assunto.'</td>
       <td>'.$id.'</td>';
 
       if ($estadoTicket == 1) {
-        echo '<td><a href="suporte.php?id='.$id.'>" method="post" data-placement="top" data-toggle="tooltip" title="Responder"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>';
+        echo '<td><a href="suporte.php?id='.$id.'>" method="post" data-placement="left" data-toggle="tooltip" title="Responder"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>';
       }else if ($estadoTicket == 2) {
-        echo '<td><a href="resposta.php?idchamado='.$id_chamado.'&id='.$id.'>" method="post" data-placement="top" data-toggle="tooltip" title="Reaberto"><button class="btn btn-danger" data-title="Reaberto"><span class="glyphicon glyphicon-refresh"></span></button></p></td>';
+        echo '<td><a href="resposta.php?idchamado='.$id_chamado.'&id='.$id.'>" method="post" data-placement="left" data-toggle="tooltip" title="Reaberto"><button class="btn btn-danger" data-title="Reaberto"><span class="glyphicon glyphicon-refresh"></span></button></p></td>';
       }
       if ($estadoTicket == 1) {
         echo ' <td><form action="includes/desativa.inc.php" method="post">
@@ -113,10 +113,9 @@ $id_usuario = $_SESSION['userId'];
           </div>
   	</div>
   </div>';
-   // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
 }elseif ($_SESSION['tipo'] == 'user'){
   session_start();
-  $sql = "SELECT u.nome, u.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE t.idUsuario =?";
+  $sql = "SELECT u.nome, u.idUsers, emailUsuario, t.idChamado, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE t.idUsuario =?";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
       header("Location: ../index.php?error=sqlerror");
@@ -154,16 +153,17 @@ $id_usuario = $_SESSION['userId'];
       $assunto = $dados['assunto'];
       $id = $dados['idTicket'];
       $estadoTicket = $dados['estadoTicket'];
+      $id_chamado = $dados['idChamado'];
 
 
     echo '<tr>
     <a><td>'.$nome.'</td></a>
     <td>'.$email.'</td>
-    <td><a>'.$telefone.'</a></td>
-    <td>'.$assunto.'</td>
+    <td>'.$telefone.'</td>
+    <td><a href="historico.php?id='.$id_chamado.'">'.$assunto.'</a></td>
     <td>'.$id.'</td>';
     if ($estadoTicket == 3) {
-      echo '<td><p data-placement="top" data-toggle="tooltip" title="finalizado">FINALIZADO</p></td>';
+      echo '<td><p data-placement="" data-toggle="tooltip" title="">FINALIZADO</p></td>';
     }else if($estadoTicket == 1) {
       echo ' <td><form action="includes/desativa.inc.php" method="post">
                     <a title="Finalizar">
@@ -191,10 +191,10 @@ $id_usuario = $_SESSION['userId'];
 
 
     else if ($estadoTicket == 0) {
-        echo '<td><p data-placement="top" data-toggle="tooltip" title="finalizado">FINALIZADO PELO USUARIO</p></td>';
+        echo '<td><p data-placement="left" data-toggle="tooltip" title="">FINALIZADO PELO USUARIO</p></td>';
     }
     if ($estadoTicket == 3) {
-      echo '<td> <a href="resposta.php?id='. $id .'>"title="Visualizar"><button class="btn btn-success" data-title="Visualizar"><span class="glyphicon glyphicon-search"></span></button></a></td>
+      echo '<td> <a href="resposta.php?id='. $id_chamado .'" data-placement="left" data-toggle="tooltip" title="Visualizar"><button class="btn btn-success" data-title="Visualizar"><span class="glyphicon glyphicon-search"></span></button></a></td>
 
       </tr>';
     }else if ($estadoTicket == 0) {
@@ -209,7 +209,7 @@ $id_usuario = $_SESSION['userId'];
 
             </td>';
     }else {
-      echo '<td><p data-placement="top" data-toggle="tooltip" title="finalizado">EM ESPERA</p></td>';
+      echo '<td><p data-placement="left" data-toggle="tooltip" title="">EM ESPERA</p></td>';
     }
 
   }
