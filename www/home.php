@@ -115,13 +115,12 @@ $id_usuario = $_SESSION['userId'];
   </div>';
 }elseif ($_SESSION['tipo'] == 'user'){
   session_start();
-  $sql = "SELECT u.nome, u.idUsers, emailUsuario, t.idChamado, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE t.idUsuario =?";
+  $sql = "SELECT u.nome, u.idUsers, emailUsuario, t.idChamado, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE estadoTicket < 3 AND (estadoTicket >= 0)";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
       header("Location: ../index.php?error=sqlerror");
       exit();
   } else {
-    mysqli_stmt_bind_param($stmt, "i", $id_usuario);
       mysqli_stmt_execute($stmt);
       $result = mysqli_stmt_get_result($stmt);
 
@@ -159,9 +158,13 @@ $id_usuario = $_SESSION['userId'];
     echo '<tr>
     <a><td>'.$nome.'</td></a>
     <td>'.$email.'</td>
-    <td>'.$telefone.'</td>
-    <td><a href="historico.php?id='.$id_chamado.'">'.$assunto.'</a></td>
-    <td>'.$id.'</td>';
+    <td>'.$telefone.'</td>';
+    if ($id_chamado == null) {
+      echo'<td>'.$assunto.'</td>';
+    }else {
+      echo'<td><a href="historico.php?id='.$id_chamado.'">'.$assunto.'</a></td>';
+    }
+echo '<td>'.$id.'</td>';
     if ($estadoTicket == 3) {
       echo '<td><p data-placement="" data-toggle="tooltip" title="">FINALIZADO</p></td>';
     }else if($estadoTicket == 1) {
@@ -191,7 +194,7 @@ $id_usuario = $_SESSION['userId'];
 
 
     else if ($estadoTicket == 0) {
-        echo '<td><p data-placement="left" data-toggle="tooltip" title="">FINALIZADO PELO USUARIO</p></td>';
+        echo '<td><p data-placement="left" data-toggle="tooltip" title="">FINALIZADO</p></td>';
     }
     if ($estadoTicket == 3) {
       echo '<td> <a href="resposta.php?id='. $id_chamado .'" data-placement="left" data-toggle="tooltip" title="Visualizar"><button class="btn btn-success" data-title="Visualizar"><span class="glyphicon glyphicon-search"></span></button></a></td>

@@ -21,6 +21,8 @@ p , a {
 }
 
 .panel0{
+  
+  padding: 5px;
   position: relative;
   overflow-x: hidden;
 }

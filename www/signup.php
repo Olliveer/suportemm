@@ -30,6 +30,9 @@ require "header.php";
       }
 
       ?>
+
+      <div class="col-sm-12 col-md-12">
+        <div class="panel panel-default panel0">
       <form class="form-horizontal" action="includes/signup.inc.php" method="post">
         <div class="form-group">
           <label class="control-label col-sm-2" for="user_cadastro">Nome:</label>
@@ -79,7 +82,8 @@ require "header.php";
             </div>
           </div>
         </form>
-
+      </div>
+    </div>
 
 
 
@@ -94,7 +98,7 @@ require "header.php";
         }
 
 
-        
+
         ?>
 
 
