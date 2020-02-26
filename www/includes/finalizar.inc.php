@@ -24,13 +24,13 @@ if (isset($_POST['reposta-ticket-submit'])) {
             $sqlUpdate = "UPDATE tickets set idChamado=?, estadoTicket=?, idSuporte=?, resposta=? where idTicket=?";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sqlUpdate)) {
-                header("Location: ../index.php?error=sqlupdateterror");
+                header("Location: ../home.php?error=sqlupdateterror");
                 exit();
             } else {
                 mysqli_stmt_bind_param($stmt, "iiisi",$id, $estado, $id_suporte, $msg, $id);
                 mysqli_stmt_execute($stmt);
 
-                header("Location: ../lista.php?resposta=success");
+                header("Location: ../index.php?resposta=success");
                 exit();
 
             }
@@ -59,13 +59,13 @@ if (isset($_POST['reposta-ticket-submit'])) {
           $sqlUpdate = "UPDATE tickets set estadoTicket=?, idSuporte=?, resposta=? where idTicket=?";
           $stmt = mysqli_stmt_init($conn);
           if (!mysqli_stmt_prepare($stmt, $sqlUpdate)) {
-              header("Location: ../index.php?error=sqlupdateterror");
+              header("Location: ../home.php?error=sqlupdateterror");
               exit();
           } else {
               mysqli_stmt_bind_param($stmt, "iisi", $estado, $id_suporte, $msg, $id);
               mysqli_stmt_execute($stmt);
 
-              header("Location: ../lista.php?resposta=success");
+              header("Location: ../index.php?resposta=success");
               exit();
 
           }

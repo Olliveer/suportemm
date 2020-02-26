@@ -10,7 +10,7 @@ if (isset($_POST['login-submit'])) {
         header("Location: ../index.php?error=emptyfields");
         exit();
     } else {
-        $sql = "SELECT * FROM users WHERE emailUsers=?;";
+        $sql = "SELECT * FROM users WHERE emailUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../index.php?error=sqlerror");
@@ -43,7 +43,7 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userId'] = $row['idUsers'];
                     $_SESSION['nome'] = $row['nome'];
                     $_SESSION['tipo'] = $row['tipoUsuario'];
-                    header("Location: ../home.php?login=success");
+                    header("Location: ../index.php?login=success");
                     exit();
                   }elseif($tipo_usuario == "user"){
                     session_start();
@@ -52,6 +52,10 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['nome'] = $row['nome'];
                     $_SESSION['tipo'] = $row['tipoUsuario'];
                     header("Location: ../home.php?login=success");
+                    exit();
+
+                  }elseif($tipo_usuario == null){
+                    header("Location: ../index.php?error=nouser");
                     exit();
 
                   }

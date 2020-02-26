@@ -28,7 +28,10 @@ $id_usuario = $_SESSION['userId'];
 
 
       }
-    echo '<div class="container">
+    echo '
+
+    <div class="container">
+    <div class"panel panel-default">
   	<div class="row">
 
 
@@ -67,9 +70,9 @@ $id_usuario = $_SESSION['userId'];
       <td>'.$id.'</td>';
 
       if ($estadoTicket == 1) {
-        echo '<td><a href="suporte.php?id='.$id.'>" method="post" data-placement="left" data-toggle="tooltip" title="Responder"><button class="btn btn-success" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>';
+        echo '<td><a href="suporte.php?id='.$id.'>" method="post" data-placement="left" data-toggle="tooltip" title="Responder"><button class="btn btn-info" data-title="Responder"><span class="glyphicon glyphicon-search"></span></button></p></td>';
       }else if ($estadoTicket == 2) {
-        echo '<td><a href="resposta.php?idchamado='.$id_chamado.'&id='.$id.'>" method="post" data-placement="left" data-toggle="tooltip" title="Reaberto"><button class="btn btn-danger" data-title="Reaberto"><span class="glyphicon glyphicon-refresh"></span></button></p></td>';
+        echo '<td><a href="resposta.php?idchamado='.$id_chamado.'&id='.$id.'>" data-placement="left" data-toggle="tooltip" title="Reaberto"><button class="btn btn-warning" data-title="Reaberto"><span class="glyphicon glyphicon-refresh"></span></button></p></td>';
       }
       if ($estadoTicket == 1) {
         echo ' <td><form action="includes/desativa.inc.php" method="post">
@@ -108,25 +111,29 @@ $id_usuario = $_SESSION['userId'];
 
   </table>
 
-
+</div>
 
           </div>
   	</div>
   </div>';
 }elseif ($_SESSION['tipo'] == 'user'){
   session_start();
-  $sql = "SELECT u.nome, u.idUsers, emailUsuario, t.idChamado, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE estadoTicket < 3 AND (estadoTicket >= 0)";
+  $sql = "SELECT u.nome, u.idUsers, emailUsuario, t.idChamado, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario AND estadoTicket < 3 AND estadoTicket >= 0) WHERE  idUsers=?";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
       header("Location: ../index.php?error=sqlerror");
       exit();
   } else {
+    mysqli_stmt_bind_param($stmt, "i", $id_usuario);
       mysqli_stmt_execute($stmt);
       $result = mysqli_stmt_get_result($stmt);
 
 
     }
-  echo '<div class="container">
+  echo '
+
+  <div class="container">
+  <div class="panel panel-default">
       <div class="row">
         <div class="col-md-12">
         <h4>Lista de Tickets</h4>
@@ -219,7 +226,7 @@ echo '<td>'.$id.'</td>';
 
 echo '</tbody>
 </table>
-
+  </div>
   </div>
   </div>
 </div>';

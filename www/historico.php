@@ -58,7 +58,7 @@ if ($_SESSION['tipo']=='user') {
 
 
       echo'
-        <a href="home.php" class="btn btn-default btn-panel" role="button">Voltar</a>
+        <a href="index.php" class="btn btn-default btn-panel" role="button">Voltar</a>
 
 
             </div>
@@ -116,7 +116,7 @@ if ($_SESSION['tipo']=='user') {
 
 
         echo'
-          <a href="lista.php" class="btn btn-default btn-panel" role="button">Voltar</a>
+          <a href="index.php" class="btn btn-default btn-panel" role="button">Voltar</a>
 
 
               </div>

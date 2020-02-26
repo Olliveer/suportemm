@@ -10,7 +10,7 @@ $id_ticket = $_GET['id'];
 
 
 if ($_SESSION['tipo']=='suporte') {
-  $sql = "SELECT * FROM tickets where idTicket =?";
+  $sql = "SELECT u.nome, u.idUsers,t.assunto,t.textoTicket,t.resposta,t.idTicket,t.idChamado FROM users as u INNER JOIN tickets as t ON(u.idUsers=t.idUsuario) where idTicket =?";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
       header("Location: ../index.php?error=sqlerror");

@@ -79,6 +79,7 @@ require "header.php";
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" name="signup-submit" class="btn btn-primary">Cadastrar</button>
+              <a href="reset-password.php">Esqueçeu a senha?</a>
             </div>
           </div>
         </form>

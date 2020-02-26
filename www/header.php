@@ -53,7 +53,7 @@ session_start();
 							echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Panel <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 							<li><a href="signup.php?admin=true">Cadastrar Suporte</a></li>
-							<li><a href="#">Listar Usuario</a></li>
+							<li><a href="listar-users.php">Listar Usuario</a></li>
 							<li><a href="#">Pesquisar Ticket</a></li>
 							</ul>
 							</li>
@@ -64,8 +64,7 @@ session_start();
 							<li><a href="home.php">Tickets</a></li>
 							<li><a href="lista.php">Tickets Finalizado</a></li>';
 						}else {
-							echo '<li><a href="signup.php">Cadastrar</a></li>
-							<li><a href="reset-password.php">Esqueçeu a senha?</a></li>';
+							echo '';
 						}
 
 						?>
@@ -90,8 +89,10 @@ session_start();
 						<input type="password" name="login_pwd" class="form-control" placeholder="Password...">
 						</div>
 
-						<button class="btn btn-primary" type="submit" name="login-submit">Login</button>
-						</form>';
+						<button class="btn btn-default btn-cadastro" type="submit" name="login-submit">Login</button>
+						<a href="signup.php" class="btn btn-primary" type="submit" name="">Cadastrar</a>
+						</form>
+						';
 					}
 
 
