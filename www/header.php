@@ -54,15 +54,16 @@ session_start();
 							<ul class="dropdown-menu">
 							<li><a href="signup.php?admin=true">Cadastrar Suporte</a></li>
 							<li><a href="listar-users.php">Listar Usuario</a></li>
-							<li><a href="#">Pesquisar Ticket</a></li>
 							</ul>
 							</li>
 							<li><a href="home.php">Tickets</a></li>
-							<li><a href="lista.php">Tickets Finalizado</a></li>';     // ->  CRIAR CADASTRO DE TIPO DE USER PARA SUPORTE
+							<li><a href="lista.php">Tickets Finalizado</a></li>
+							<li><a class="disabled"> Bem vindo: <strong>'.$_SESSION['nome'].'</strong></a></li>';
 						}elseif ($_SESSION['tipo'] == 'user') {
 							echo '<li><a href="newticket.php">Abrir Ticket</a></li>
 							<li><a href="home.php">Tickets</a></li>
-							<li><a href="lista.php">Tickets Finalizado</a></li>';
+							<li><a href="lista.php">Tickets Finalizado</a></li>
+							<li><a class="disabled"> Bem vindo: <strong>'.$_SESSION['nome'].'</strong></a></li>';
 						}else {
 							echo '';
 						}
@@ -89,7 +90,7 @@ session_start();
 						<input type="password" name="login_pwd" class="form-control" placeholder="Password...">
 						</div>
 
-						<button class="btn btn-default btn-cadastro" type="submit" name="login-submit">Login</button>
+						<button class="btn btn-login" type="submit" name="login-submit">Login</button>
 						<a href="signup.php" class="btn btn-primary" type="submit" name="">Cadastrar</a>
 						</form>
 						';

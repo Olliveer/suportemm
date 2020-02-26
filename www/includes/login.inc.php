@@ -59,10 +59,10 @@ if (isset($_POST['login-submit'])) {
                     exit();
 
                   }
-                }  else {
-                    header("Location: ../index.php?error=nouser");
-                    exit();
                 }
+            }else {
+                header("Location: ../index.php?error=nouser");
+                exit();
             }
         }
     }

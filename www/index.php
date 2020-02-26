@@ -4,6 +4,21 @@
  ?>
  <?php
 
+ if (isset($_GET["signup"])) {
+   if ($_GET["signup"] == "success") {
+     echo '<p class="aviso">Cadastro feito com sucesso!</p>';
+   }
+ }
+
+ if (isset($_GET["error"])) {
+   if ($_GET["error"] == "wrongpwd") {
+     echo '<p class="aviso">Erro password!</p>';
+   }elseif ($_GET['error'] == "nouser") {
+        echo '<p class="aviso">Usuário não existe!</p>';
+   }
+ }
+
+
  	session_start();
 
  	if(!$_SESSION['tipo'] == 'suporte'){
@@ -107,7 +122,7 @@
           <!-- Info box-->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon info-danger  elevation-1"><i class="glyphicon glyphicon-exclamation-sign"></i></span>
+              <span class="info-box-icon info-danger  elevation-1"><i class="glyphicon glyphicon-warning-sign"></i></span>
               <div class="info-box-content ">
                 <span class="info-box-text">Em Espera</span>
                 <span class="info-box-number">'.$expira.'</span>
@@ -314,7 +329,7 @@
 			<ul class="we-create animated fadeInUp delay-1s">
 				<li>Cadastra-se para começar a usar.</li>
 			</ul>
-			<a class="link animated fadeInUp delay-1s servicelink" href="signup.php">Começar</a>
+			<a class="btn btn-login link animated fadeInUp delay-1s servicelink" href="signup.php">Começar</a>
 		</div>
 	</div>';
 }

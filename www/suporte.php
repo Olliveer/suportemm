@@ -63,7 +63,7 @@ if ($_SESSION['tipo']=='suporte') {
       </div>
     </div>
     <p><button class="btn btn-primary btn-panel" type="submit" name="reposta-ticket-submit" id="btn_resposta" role="button">Responder</button>
-        <a href="index.php" class="btn btn-default" role="button">Voltar</a>
+        <a href="index.php" class="btn btn-voltar" role="button">Voltar</a>
     </p>
     </form>
 

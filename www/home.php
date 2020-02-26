@@ -10,6 +10,19 @@ session_start();
 $id_usuario = $_SESSION['userId'];
 ?>
 
+<?php
+if (isset($_GET["nonvoticket"])) {
+  if ($_GET["nonvoticket"] == "success") {
+    echo '<p class="aviso">Novo ticket aberto</p>';
+  }
+}
+if (isset($_GET["error"])) {
+  if ($_GET["error"] == "ticketdesativado") {
+    echo '<p class="aviso">Ticket já desativado!</p>';
+  }
+}
+
+?>
 
 
 <main>

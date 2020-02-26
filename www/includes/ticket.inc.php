@@ -25,13 +25,13 @@ if (isset($_POST['new-tickt-submit'])) {
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt);
             if ($resultCheck > 0) {
-                header("Location: ../home.php?error=assuntorepetido" . $assunto);
+                header("Location: ../newticket.php?error=assuntorepetido");
                 exit();
               }else {
                 $sql = "INSERT INTO tickets (idUsuario, emailUsuario, assunto, textoTicket, numeroContato, estadoTicket) VALUES (?, ?, ?, ?, ?, ?);";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    header("Location: ../home.php?error=sqlerror");
+                    header("Location: ../newticket.php?error=sqlerror");
                     exit();
               }else {
                 // 1 para novo

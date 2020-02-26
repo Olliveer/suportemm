@@ -17,15 +17,59 @@ html {
     -webkit-tap-highlight-color: transparent
 }
 
+.aviso{
+  color: red !important;
+}
+
+.btn {
+display: inline-block;
+padding: 9px 12px;
+padding-top: 7px;
+margin-bottom: 0;
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+-webkit-border-radius: 3px;
+-webkit-border-radius: 3px;
+-webkit-border-radius: 3px;
+background-image: none !important;
+border: none;
+text-shadow: none;
+box-shadow: none;
+transition: all 0.12s linear 0s !important;
+font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 /* header */
-.btn-cadastro,
-.btn-cadastro:hover,
-.btn-cadastro:active,
-.btn-cadastro:visited,
-.btn-cadastro:focus {
-  background: #f58421;
-  border-color: #f58421;
-  color: #fff;
+.btn-login{
+color: #fff;
+background-color: #f58421;
+border-color: #357ebd;
+
+}
+
+.btn-login:hover{
+  background-color: #f58421;
+  color: white;
+}
+
+.btn-voltar{
+  background-color: grey;
+  border-color: black;
+  color: white;
+}
+
+.btn-voltar:hover{
+  background: grey;
+  color: white;
+
+}
+
+.disabled {
+  color: currentColor;
+
 }
 
 
@@ -86,7 +130,7 @@ html {
 }
 
 .info-new{
-  background-color: blue;
+  background-color: #17a2b8;
 }
 
 .info-ok{

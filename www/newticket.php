@@ -4,58 +4,68 @@ require "header.php";
 <?php
 session_start();
 $nome = $_SESSION['nome'];
-echo '<div class="container">
-<div class="row">
-<div class="col-md-12 ">
-<div class="well well-sm">
+if (isset($_GET["error"])) {
+  if ($_GET["error"] == "assuntorepetido") {
+    echo '<p class="aviso">Já existe um ticket com esse assunto aberto.</p>';
+  }else if ($_GET["error"] == "sqlerror") {
+      echo '<p class="aviso">Sql Error</p>';
+  }
+}
+
+
+
+echo '
 <form class="form-horizontal" action="includes/ticket.inc.php" method="post">
 <fieldset>
-<legend class="text-center">Abrir Ticket de Suporte</legend>
 
-<!-- Nome Usuário -->
+<!-- Form Name -->
+<legend>Novo Ticket</legend>
+
+<!-- Text input-->
 <div class="form-group">
-<label class="col-md-3 control-label" for="assunto_form_ticket">Usúario</label>
-<div class="col-md-9">
-<h4>'.$nome.'</h4>
-</div>
+  <label class="col-md-4 control-label" for="nome_user">Nome</label>
+  <div class="col-md-6">
+  <h4>'.$nome.'</h4>
+
+  </div>
 </div>
 
-<!-- Assunto -->
+<!-- Text input-->
 <div class="form-group">
-<label class="col-md-3 control-label" for="assunto_form_ticket">Assunto</label>
-<div class="col-md-9">
-<input id="assunto_form_ticket" name="assunto_form_ticket" type="text" placeholder="Assunto..." class="form-control">
-</div>
+  <label class="col-md-4 control-label" for="assunto_form_ticket">Assunto</label>
+  <div class="col-md-6">
+  <input name="assunto_form_ticket" class="form-control input-md" id="assunto_form_ticket" required="" type="text" placeholder="Assunto">
+
+  </div>
 </div>
 
-<!-- Telefone -->
+<!-- Password input-->
 <div class="form-group">
-<label class="col-md-3 control-label" for="telefone_form_ticket">Número Telefone</label>
-<div class="col-md-9">
-<input id="telefone_form_ticket" name="telefone_form_ticket" type="text" placeholder="Seu número de telefone..." class="form-control">
-</div>
+  <label class="col-md-4 control-label" for="telefone_form_ticket">Telefone</label>
+  <div class="col-md-6">
+    <input name="telefone_form_ticket" class="form-control input-md" id="telefone_form_ticket" required="" type="text" placeholder="Número Contato">
+
+  </div>
 </div>
 
-<!-- Menssagem -->
+<!-- Textarea -->
 <div class="form-group">
-<label class="col-md-3 control-label" for="msg_form_ticket">Menssagem</label>
-<div class="col-md-9">
-<textarea class="form-control" id="msg_form_ticket" name="msg_form_ticket" placeholder="Digite sua menssagem aqui..." rows="10"></textarea>
-</div>
+  <label class="col-md-4 control-label" for="msg_form_ticket">Menssagem</label>
+  <div class="col-md-6">
+    <textarea name="msg_form_ticket" class="form-control" id="msg_form_ticket" rows="6">Digite sua menssagem aqui...</textarea>
+  </div>
 </div>
 
-
+<!-- Button -->
 <div class="form-group">
-<div class="col-md-12 text-right">
-<button type="submit" name="new-tickt-submit" class="btn btn-primary btn-lg">Enviar</button>
+  <label class="col-md-4 control-label" for="new-tickt-submit"></label>
+  <div class="col-md-4">
+    <button name="new-tickt-submit" class="btn btn-primary" id="new-tickt-submit">Enviar</button>
+  </div>
 </div>
-</div>
+
 </fieldset>
-</form>
-</div>
-</div>
-</div>
-</div>';
+</form>';
 
 ?>
 
