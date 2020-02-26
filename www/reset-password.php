@@ -23,11 +23,6 @@ require "header.php";
           }
         }
 
-
-
-
-
-
         ?>
 
       </section>

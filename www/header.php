@@ -27,11 +27,7 @@ session_start();
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-
-
 </head>
-
 <body>
 	<!--[if lt IE 7]>
 	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -71,8 +67,6 @@ session_start();
 						?>
 					</ul>
 
-
-
 					<?php
 
 					if (isset($_SESSION['userId'])) {
@@ -96,14 +90,8 @@ session_start();
 						';
 					}
 
-
 					?>
-
-
-
 				</div>
 			</div>
-
 		</nav>
-
 	</header>

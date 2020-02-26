@@ -30,72 +30,69 @@ require "header.php";
 
       ?>
 
-<form class="form-horizontal" action="includes/signup.inc.php" method="post">
-  <fieldset>
+      <form class="form-horizontal" action="includes/signup.inc.php" method="post">
+        <fieldset>
 
-  <!-- Form Name -->
-  <legend>Cadastro</legend>
+          <!-- Form Name -->
+          <legend>Cadastro</legend>
 
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="user_cadastro">Nome</label>
-    <div class="col-md-6">
-    <input name="user_cadastro" class="form-control input-md" id="user_cadastro" required="" type="text" placeholder="Nome">
-
-    </div>
-  </div>
-
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="email_cadastro">E-mail</label>
-    <div class="col-md-6">
-    <input name="email_cadastro" class="form-control input-md" id="email_cadastro" required="" type="text" placeholder="E-mail">
-
-    </div>
-  </div>
-
-  <!-- Password input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="pwd_cadastro">Password</label>
-    <div class="col-md-6">
-      <input name="pwd_cadastro" class="form-control input-md" id="pwd_cadastro" required="" type="password" placeholder="Password">
-
-    </div>
-  </div>
-
-  <!-- Password input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="pwd_cadastro_repeat">Confirma Password</label>
-    <div class="col-md-6">
-      <input name="pwd_cadastro_repeat" class="form-control input-md" id="pwd_cadastro_repeat" required="" type="password" placeholder="Repita seu password">
-
-    </div>
-  </div>
-
-
-
-
-  <!-- Button -->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="signup-submit"></label>
-    <div class="col-md-4">
-      <?php
-      if (isset($_GET["admin"])) {
-        if ($_GET["admin"] == "true") {?>
+          <!-- Text input-->
           <div class="form-group">
-            <div class="col-md-4 col-sm-10">
-              <div class="checkbox">
-                <label><input type="checkbox" name="check_suporte" value="suporte">Suporte?</label>
-              </div>
+            <label class="col-md-4 control-label" for="user_cadastro">Nome</label>
+            <div class="col-md-6">
+              <input name="user_cadastro" class="form-control input-md" id="user_cadastro" required="" type="text" placeholder="Nome">
+
             </div>
           </div>
-        <?php }} ?>
-      <button name="signup-submit" class="btn btn-primary" id="signup-submit">Cadastrar</button>
-        <a href="reset-password.php">Esqueçeu a senha?</a>
-    </div>
-  </div>
-  </fieldset>
-</form>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="email_cadastro">E-mail</label>
+            <div class="col-md-6">
+              <input name="email_cadastro" class="form-control input-md" id="email_cadastro" required="" type="text" placeholder="E-mail">
+
+            </div>
+          </div>
+
+          <!-- Password input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="pwd_cadastro">Password</label>
+            <div class="col-md-6">
+              <input name="pwd_cadastro" class="form-control input-md" id="pwd_cadastro" required="" type="password" placeholder="Password">
+
+            </div>
+          </div>
+
+          <!-- Password input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="pwd_cadastro_repeat">Confirma Password</label>
+            <div class="col-md-6">
+              <input name="pwd_cadastro_repeat" class="form-control input-md" id="pwd_cadastro_repeat" required="" type="password" placeholder="Repita seu password">
+
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="signup-submit"></label>
+            <div class="col-md-4">
+              <?php
+              if (isset($_GET["admin"])) {
+                if ($_GET["admin"] == "true") {?>
+                  <div class="form-group">
+                    <div class="col-md-4 col-sm-10">
+                      <div class="checkbox">
+                        <label><input type="checkbox" name="check_suporte" value="suporte">Suporte?</label>
+                      </div>
+                    </div>
+                  </div>
+                <?php }} ?>
+                <button name="signup-submit" class="btn btn-primary" id="signup-submit">Cadastrar</button>
+                <a href="reset-password.php">Esqueçeu a senha?</a>
+              </div>
+            </div>
+          </fieldset>
+        </form>
 
 
 

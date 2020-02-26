@@ -5,14 +5,9 @@ if (isset($_POST["reset-request-submit"])) {
   $selector = bin2hex(random_bytes(8));
   $token = random_bytes(32);
 
-
   $url = "LINK DO SITE/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
-
-
   $expires = date("U") + 1800;
-
   require 'dbh.inc.php';
-
   $userEmail = $_POST["email"];
 
   $sql = "DELETE FROM pwdreset WHERE pwdResetEmail=?";
@@ -40,13 +35,10 @@ if (isset($_POST["reset-request-submit"])) {
   mysqli_close($conn);
 
   $to = $userEmail;
-
   $subject = 'Reset seu password';
-
   $message = '<p>Recebemos seu pedido de reset de password, se não foi você quem requisitou é só ignorar!</p>';
   $message .= '<p>Aqui está seu password link: </br>';
   $message .= '<a href="' . $url . '">' . $url . '</a></p>';
-
   $headers = "From: siteexemplo <site@email.com>\r\n";
   $headers .= "Responder para: email@exemplo.com\r\n";
   $headers .= "Content-type: text/html\r\n";
