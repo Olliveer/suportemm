@@ -314,7 +314,7 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
     </figure>
     <h1 class="animated fadeInDown delay-07s">Bem Vindo ao Suporte</h1>
     <ul class="we-create animated fadeInUp delay-1s">
-    <li>Cadastra-se para começar a usar.</li>
+    <li>Cadastre-se para começar a usar.</li>
     </ul>
     <a class="btn btn-login link animated fadeInUp delay-1s servicelink" href="signup.php">Começar</a>
     </div>
