@@ -5,7 +5,6 @@ require "header.php";
 
 <?php
 require 'includes/dbh.inc.php';
-session_start();
 
 $id_usuario = $_SESSION['userId'];
 ?>
@@ -13,7 +12,6 @@ $id_usuario = $_SESSION['userId'];
 <main>
   <?php
   if ($_SESSION['tipo']=='suporte') {
-    session_start();
     $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, idChamado, estadoTicket, assunto, textoTicket, idTicket, idSuporte FROM tickets INNER JOIN users ON (users.idUsers =tickets.idUsuario ) where estadoTicket = 3 ";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -79,7 +77,6 @@ $id_usuario = $_SESSION['userId'];
     </div>';
 
   }else if ($_SESSION['tipo'] == 'user') {
-    session_start();
     $sql = "SELECT u.nome, u.idUsers, emailUsuario, t.idChamado, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario AND t.estadoTicket = 3) WHERE t.idUsuario =?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -141,7 +138,7 @@ $id_usuario = $_SESSION['userId'];
     </div>';
 
   }else {
-    echo "NINGUÉM LOGADO AQUI";
+    echo "Acesso não autorizado!";
   }
   ?>
 

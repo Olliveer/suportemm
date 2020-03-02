@@ -4,7 +4,6 @@ require "header.php";
 <?php
 require 'includes/dbh.inc.php';
 
-session_start();
 $nome = $_SESSION['nome'];
 $id_ticket = $_GET['id'];
 

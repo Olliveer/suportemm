@@ -8,7 +8,6 @@ require "header.php";
 ?>
 <?php
 require 'includes/dbh.inc.php';
-session_start();
 
 $id_usuario = $_SESSION['userId'];
 ?>
@@ -16,7 +15,6 @@ $id_usuario = $_SESSION['userId'];
 
   <?php
   if ($_SESSION['tipo'] == 'suporte') {
-    session_start();
     $sql = "SELECT nome, emailUsers, tipoUsuario, idUsers FROM users";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

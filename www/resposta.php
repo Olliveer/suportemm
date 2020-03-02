@@ -4,7 +4,6 @@ require "header.php";
 <?php
 require 'includes/dbh.inc.php';
 
-session_start();
 $nome = $_SESSION['nome'];
 $id_ticket = $_GET['id'];
 $id_chamado = $_GET['idchamado'];
@@ -47,7 +46,7 @@ if ($_SESSION['tipo']=='user') {
     </div>';
 
 
-    if(is_null($suporte_resposta)) {
+    if(!is_null($suporte_resposta)) {
       echo '<div class="panel panel-default panel2">
       <div class="panel-heading"><strong>Suporte: </strong>'.$nome_suporte.'</div>
       <div class="panel-body">'.$respostaSuporte.'</div>

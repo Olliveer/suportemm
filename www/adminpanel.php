@@ -5,7 +5,6 @@ require "header.php";
 
 <?php
 require 'includes/dbh.inc.php';
-session_start();
 
 $id_usuario = $_SESSION['userId'];
 ?>
@@ -32,7 +31,7 @@ $id_usuario = $_SESSION['userId'];
     echo '';
 
 }else {
-  echo "NINGUÉM LOGADO AQUI";
+  die("Acesso não autorizado!");
 }
 ?>
 

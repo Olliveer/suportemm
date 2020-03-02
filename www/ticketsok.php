@@ -5,7 +5,6 @@ require "header.php";
 
 <?php
 require 'includes/dbh.inc.php';
-session_start();
 
 $id_usuario = $_SESSION['userId'];
 ?>
@@ -14,7 +13,6 @@ $id_usuario = $_SESSION['userId'];
 
     <?php
     if ($_SESSION['tipo'] == 'suporte') {
-        session_start();
         $sql = "SELECT users.nome, users.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets INNER JOIN users where tickets.idUsuario=2";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -72,9 +70,8 @@ $id_usuario = $_SESSION['userId'];
           </div>
   	</div>
   </div>';
-      
+
     } elseif ($_SESSION['tipo'] == 'user') {
-        session_start();
         $sql = "SELECT u.nome, u.idUsers, emailUsuario, numeroContato, assunto, textoTicket, idTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario) WHERE t.idUsuario =?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {

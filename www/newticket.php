@@ -2,7 +2,7 @@
 require "header.php";
 ?>
 <?php
-session_start();
+
 $nome = $_SESSION['nome'];
 if (isset($_GET["error"])) {
   if ($_GET["error"] == "assuntorepetido") {

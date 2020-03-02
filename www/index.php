@@ -19,7 +19,6 @@ if (isset($_GET["error"])) {
 }
 
 
-session_start();
 
 if(!$_SESSION['tipo'] == 'suporte'){
 
@@ -200,8 +199,10 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
         echo '<td><span class="badge badge-danger">Há dois dias</span></td>';
       }elseif ($expira_date >= 0 && $estadoTicket == 2) {
         echo'<td><span class="badge badge-warning">Reaberto</span></td>';
-      }else {
+      }elseif ($estadoTicket == 3) {
         echo'<td><span class="badge badge-success">Finalizado</span></td>';
+      }else {
+        echo'<td><span class="badge badge-danger">Há mais de sete dias</span></td>';
       }
 
       echo'<td>'.$nome_usuario.'</td>';
@@ -225,7 +226,6 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
     </main>';
 
   } else if($_SESSION['tipo'] == 'user'){
-    session_start();
     $id_usuario = $_SESSION['userId'];
     $sql = "SELECT u.nome, t.idTicket, DATE_FORMAT(t.dataCriacao, '%d %b %Y %T') AS Data, t.estadoTicket, t.assunto, DATEDIFF(t.dataCriacao, CURDATE()) as expira_data FROM users as u INNER JOIN tickets as t ON(t.idSuporte=u.idUsers AND(u.tipoUsuario= 'suporte')) WHERE t.idUsuario=?  ORDER BY t.dataCriacao ASC";
     $stmt = mysqli_stmt_init($conn);

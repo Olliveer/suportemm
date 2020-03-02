@@ -5,7 +5,6 @@ require "header.php";
 
 <?php
 require 'includes/dbh.inc.php';
-session_start();
 
 $id_usuario = $_SESSION['userId'];
 ?>
@@ -109,7 +108,6 @@ if (isset($_GET["error"])) {
     </div>
     </div>';
   }elseif ($_SESSION['tipo'] == 'user'){
-    session_start();
     $sql = "SELECT u.nome, u.idUsers, emailUsuario, t.idChamado, numeroContato, assunto, textoTicket, idTicket, estadoTicket FROM tickets as t INNER JOIN users as u ON (u.idUsers = t.idUsuario AND estadoTicket < 3 AND estadoTicket >= 0) WHERE  idUsers=?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
